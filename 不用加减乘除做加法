@@ -1,0 +1,17 @@
+public class 不用加减乘除做加法 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(AddNumThoughBit(7, 9));
+	}
+
+	static int AddNumThoughBit(int a,int b){
+		int sum=0;
+		while(b!=0){
+			sum = a^b;
+			b=(a&b)<<1;
+			a=sum;			
+		}		
+		return sum;
+	}
+}
