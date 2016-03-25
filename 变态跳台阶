@@ -1,0 +1,45 @@
+一个台阶总共有n级，如果一次可以跳1级，也可以跳2级......它也可以跳上n级。此时该青蛙跳上一个n级的台阶总共有多少种跳法？
+
+
+public class 变态跳台阶 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(JumpFloor(2));
+	}
+
+	public static int JumpFloorII(int target) {
+		int[] ms = new int[target + 1];
+		ms[1] = 1;
+		if (target == 1)
+			return 1;
+		for (int i = 2; i < ms.length; i++) {
+			int tmp = 0;
+			for (int j = 1; j < i; j++) {
+				tmp += ms[j];
+			}
+			ms[i] += tmp + 1;
+		}
+		return ms[target];
+	}
+	
+  //传统跳台阶，只能跳1阶或者2阶
+	public static int JumpFloor(int target) {
+		/*
+		 * if (target == 1) return 1; if (target == 2) return 2; return
+		 * JumpFloor(target - 1) + JumpFloor(target - 2);
+		 */
+		// int[] iarr=new int[target+1];
+		if (target == 1)
+			return 1;
+		if (target == 2)
+			return 2;
+		int f1 = 1, f2 = 2, res = 0;
+		for (int i = 2; i < target; i++) {
+			res = f1 + f2;
+			f1 = f2;
+			f2 = res;
+		}
+		return res;
+	}
+}
